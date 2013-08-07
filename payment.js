@@ -38,7 +38,7 @@ var Payment = {
 
 		Object.keys(Order.items).each(function(key){
 
-			$('order_item_' + key).destroy();
+			$('payment_item_' + key).destroy();
 		});
 
 		Order.clear();
