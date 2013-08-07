@@ -1,3 +1,15 @@
+@box-orange: #F58B0A;
+@box-dark-orange: #8f4e00;
+@box-light-orange: #f5c00a;
+.rounded-corners (@radius: 10px, @width: 4px) {
+    border: @width solid @box-orange;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
 .html {
     margin: 0;
     padding: 0;
@@ -17,32 +29,37 @@
     width: 400px;
     height: 300px;
     margin: 5px auto;
-    border: 1px solid green;
+    padding: 3px;
+    .rounded-corners;
+        #order_list {
+            width: 100%;
+            height: 93%;
+        }
+        #order_total {
+            width: 100%;
+            height: 7%;
+            border-top: 2px solid green;
+        }
+        .OrderItem {
+        }
 }
-#order_list {
-    width: 100%;
-    height: 93%;
-}
-#order_total {
-    width: 100%;
-    height: 7%;
-    border-top: 1px solid green;
-}
-.OrderItem {
-}
+
 #items {
     float: left;
     width: 1000px;
     height: 400px;
     margin: 5px auto;
-    border: 1px solid green;
+    .rounded-corners;
 }
 .Item{
     float: left;
     height: 100px;
-    width: 100px;
+    width: 140px;
     cursor: pointer;
-    border: 1px solid red;
+    margin: 10px;
+    .rounded-corners;
+    background: -moz-radial-gradient(@box-orange 20%, @box-light-orange 100%);
+    box-shadow: 7px 7px 3px @box-dark-orange;
     
     -webkit-user-select: none;  /* Chrome all / Safari all */
     -moz-user-select: none;     /* Firefox all */
