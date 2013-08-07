@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="index.css">
+		<script src="Mootools/mootools-core-1.4.5.js"></script>
+		<script src="Mootools/mootools-more-1.4.0.1.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+		<script src="bootstrap.js"></script>
+		<script src="api.js"></script>
+		<script src="user.js"></script>
+		<script src="main.js"></script>
+		<script src="order.js"></script>
+	</head>
+	<body>
+		<div id="Login">
+			<div class="Popout">
+				<form id="LoginForm">
+					<input name="name">
+					<input type="password" name="password">
+					<input type="submit">
+				</form>
+			</div>
+		</div>
+		<div id="Main">
+			<div><span class="UserName"></span></div>
+			<div id="items">
+				<div id="item_dummy" class="Item">
+					<span class="Name"></span><br>
+					<span class="Price"></span>
+				</div>
+			</div>
+			<div id="order">
+				<div id="order_item_dummy" class="OrderItem">
+					<span class="Name"></span>
+					<span class="Price"></span>
+					<span class="Count"></span>
+				</div>
+				<div id="order_total">
+					Totaal: &euro; <span class="Price">0.00</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
