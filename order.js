@@ -40,6 +40,23 @@ var Order = {
 		}
 
 		this.calculateTotal();
+
+		$('key-pad').addEvent('submit', function(value){
+
+			this.removeEvents();
+			Order.setCount(id, value);
+		});
+	},
+
+	setCount: function(id, value){
+
+		this.items[id].count = value;
+		$('order_item_' + id).getElements('.Count').set('text', value);
+		$('order_item_' + id).getElements('.TotalPrice').set(
+			'text',
+			parseFloat(value * this.items[id].price, 10).toFixed(2)
+		);
+		this.calculateTotal();
 	},
 
 	calculateTotal: function(){

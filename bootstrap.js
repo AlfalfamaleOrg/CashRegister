@@ -4,6 +4,7 @@ window.addEvent('domready', function(){
 	Order.init();
 	Payment.init();
 
+	Keypad.init();
 
 	User.init();
 });
