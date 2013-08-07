@@ -44,61 +44,68 @@ body {
     margin: 5px auto;
     font-size: 24px;
     .rounded-corners;
-        #order_list {
-            width: 100%;
-            height: 88%;
+    
+    #order_list {
+        width: 100%;
+        height: 88%;
+    }
+    #order_total {
+        width: 98%;
+        height: 12%;
+        padding-right: 10px;
+        text-align: right;
+        border-top: 5px solid @box-orange;
+    }
+    #Order_title {
+        font-size: 17px;
+        text-align: center;
+        color: green;
+        
+        .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
+            padding: 5px 2px 0 2px;
+            height: 24px
         }
-        #order_total {
-            width: 98%;
-            height: 12%;
-            padding-right: 10px;
-            text-align: right;
-            border-top: 5px solid @box-orange;
+    }
+    .OrderItem {
+    	cursor: pointer;
+    
+        .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
+            display: block;
+            float: left;  
+            height: 30px;
+            padding: 5px 0 0 4px;
+            border-top: none !important;
         }
-        #Order_title {
-            font-size: 17px;
-            text-align: center;
-            color: green;
-            .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
-                padding: 5px 2px 0 2px;
-                height: 24px
-            }
+        .Name {
+            width: 158px;
+            border: 2px solid @light-grey;  
+            border-left: none;
         }
-        .OrderItem {
-            .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
-                display: block;
-                float: left;  
-                height: 30px;
-                padding: 5px 0 0 4px;
-                border-top: none !important;
-            }
-            .Name {
-                width: 158px;
-                border: 2px solid @light-grey;  
-                border-left: none;
-            }
-            .SinglePrice {
-                width: 65px;
-                border: 2px solid @light-grey;
-                border-left: none;
-            }
-            .Count {
-                width: 45px;
-                border: 2px solid @light-grey;
-                border-left: none;
-            }
-            .TotalPrice {
-                width: 70px;
-                border: 2px solid @light-grey;
-                border-left: none;
-                border-right: none;
-            }
-            .Remove_button {
-                width: 32px;
-                border: 2px solid @light-grey;
-                border-right: none;
-            }
+        .SinglePrice {
+            width: 65px;
+            border: 2px solid @light-grey;
+            border-left: none;
         }
+        .Count {
+            width: 45px;
+            border: 2px solid @light-grey;
+            border-left: none;
+        }
+        .TotalPrice {
+            width: 70px;
+            border: 2px solid @light-grey;
+            border-left: none;
+            border-right: none;
+        }
+        .Remove_button {
+            width: 32px;
+            border: 2px solid @light-grey;
+            border-right: none;
+        }
+    }
+    .OrderItem.Selected{
+    	background-color: blue;
+    }    
 }
 
 #check-out {
