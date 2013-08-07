@@ -8,6 +8,8 @@ var Order = {
 
 			Payment.show(Order.items);
 		});
+
+		$('clear_order').addEvent('click', this.clear);
 	},
 
 	selectItem: function(event){
@@ -78,6 +80,11 @@ var Order = {
 			order_item.inject('order_item_dummy', 'before').show();
 		}
 
+		if(!$('order_item_' + id).hasClass('Selected')){
+
+			$('order_item_' + id).fireEvent('click', {target: $('order_item_' + id)});
+		}
+
 		this.calculateTotal();
 
 		$('key-pad').addEvent('submit', function(value){
@@ -133,5 +140,16 @@ var Order = {
 		}
 
 		this.calculateTotal();
+	},
+
+	clear: function(){
+
+		Object.keys(Order.items).each(function(key){
+
+			$('order_item_' + key).destroy();
+		});
+
+		Order.items = {};
+		Order.calculateTotal();
 	}
 };

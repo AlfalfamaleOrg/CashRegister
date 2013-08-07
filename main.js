@@ -21,6 +21,7 @@ var Main = {
 			var product = $('item_dummy').clone();
 
 			product.set('id', 'item_' + item.id);
+			product.set('data-id', item.id);
 			product.getElements('.Name').set('text', item.name);
 			product.getElements('.Price').set('text', item.price);
 
