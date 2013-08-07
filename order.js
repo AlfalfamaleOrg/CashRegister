@@ -10,6 +10,40 @@ var Order = {
 		});
 	},
 
+	selectItem: function(event){
+
+		$('key-pad').removeEvents();
+
+		var target;
+
+		if(event.target.hasClass('OrderItem')){
+
+			target = event.target;
+		}
+		else{
+
+			target = event.target.getParent('.OrderItem');
+		}
+
+		if(target.hasClass('Selected')){
+
+			target.removeClass('Selected');
+			return;
+		}
+
+		var id = target.get('data-id');
+
+		$$('.Selected').removeClass('Selected');
+		target.addClass('Selected');
+
+		$('key-pad').addEvent('submit', function(value){
+
+			this.removeEvents();
+			Order.setCount(id, value);
+			target.removeClass('Selected');
+		});
+	},
+
 	addItem: function(id, name, price){
 
 		if(this.items[id]){
@@ -27,6 +61,7 @@ var Order = {
 			var order_item = $('order_item_dummy').clone();
 
 			order_item.set('id', 'order_item_' + id);
+			order_item.set('data-id', id);
 			order_item.getElements('.Name').set('text', name);
 			order_item.getElements('.TotalPrice, .SinglePrice').set('text', parseFloat(price, 10).toFixed(2));
 			order_item.getElements('.Count').set('text', 1);
@@ -35,6 +70,8 @@ var Order = {
 
 				Order.removeItem(id);
 			});
+
+			order_item.addEvent('click', this.selectItem);
 
 			order_item.inject('order_item_dummy', 'before').show();
 		}
