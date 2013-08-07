@@ -39,11 +39,9 @@ var Payment = {
 		Object.keys(Order.items).each(function(key){
 
 			$('order_item_' + key).destroy();
-			$('payment_item_' + key).destroy();
 		});
 
-		Order.items = {};
-		Order.calculateTotal();
+		Order.clear();
 
 		$$('.Screen').hide();
 		$('Main').show();

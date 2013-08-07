@@ -1,4 +1,4 @@
-INSERT INTO `cashregister`.`users` (`id`, `login`, `password`, `name`, `group`, `disabled`) VALUES (NULL, 'Joep', 'test', 'Joep Vugts', 'Admin', '0')
+INSERT INTO `cashregister`.`users` (`id`, `login`, `password`, `name`, `group`, `disabled`) VALUES (NULL, 'Joep', 'test', 'Joep Vugts', 'Admin', '0');
 
 INSERT INTO `cashregister`.`items` 
 	(`id`, `name`, `type_id`, `price_exc`, `price_tax`, `price_inc`, `cost_exc`, `cost_tax`, `cost_inc`, `archived`) 
