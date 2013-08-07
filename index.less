@@ -37,6 +37,7 @@ body {
 #username {
 }
 
+
 #order {
     float: left;
     width: 400px;
@@ -44,11 +45,33 @@ body {
     margin: 5px auto;
     font-size: 24px;
     .rounded-corners;
-<<<<<<< HEAD
-    
-    #order_list {
+    table {
         width: 100%;
-        height: 88%;
+        border-collapse: collapse;    
+    }
+    table, td, th {
+        border:1px solid black;
+    }
+    .Name {
+        width: 50%;
+    }
+    .SinglePrice {
+        width: 20%;
+    }
+    .Count {
+        width: 10%;
+    }
+    .TotalPrice {
+        width: 20%;
+    }
+    .Remove_button {
+        width: 10%;
+    }
+    #order_list {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            width: 100%;
+            height: 88%;
     }
     #order_total {
         width: 98%;
@@ -57,100 +80,13 @@ body {
         text-align: right;
         border-top: 5px solid @box-orange;
     }
-    #Order_title {
-        font-size: 17px;
-        text-align: center;
-        color: green;
-        
-        .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
-            padding: 5px 2px 0 2px;
-            height: 24px
-=======
-        #order_list {
-            overflow-y: scroll;
-            overflow-x: hidden;
-            width: 100%;
-            height: 88%;
->>>>>>> scrollbars and stuff
-        }
-    }
     .OrderItem {
-    	cursor: pointer;
-    
-        .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
-            display: block;
-            float: left;  
-            height: 30px;
-            padding: 5px 0 0 4px;
-            border-top: none !important;
-        }
-        .Name {
-            width: 158px;
-            border: 2px solid @light-grey;  
-            border-left: none;
-        }
-<<<<<<< HEAD
-        .SinglePrice {
-            width: 65px;
-            border: 2px solid @light-grey;
-            border-left: none;
-=======
-        .OrderItem {
-            .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
-                display: block;
-                float: left;  
-                height: 30px;
-                padding: 5px 0 0 4px;
-                border-top: none !important;
-            }
-            .Name {
-                width: 158px;
-                border: 2px solid @light-grey;  
-                border-left: none;
-            }
-            .SinglePrice {
-                width: 60px;
-                border: 2px solid @light-grey;
-                border-left: none;
-            }
-            .Count {
-                width: 45px;
-                border: 2px solid @light-grey;
-                border-left: none;
-            }
-            .TotalPrice {
-                width: 60px;
-                border: 2px solid @light-grey;
-                border-left: none;
-                border-right: none;
-            }
-            .Remove_button {
-                width: 32px;
-                border: 2px solid @light-grey;
-                border-right: none;
-            }
->>>>>>> scrollbars and stuff
-        }
-        .Count {
-            width: 45px;
-            border: 2px solid @light-grey;
-            border-left: none;
-        }
-        .TotalPrice {
-            width: 70px;
-            border: 2px solid @light-grey;
-            border-left: none;
-            border-right: none;
-        }
-        .Remove_button {
-            width: 32px;
-            border: 2px solid @light-grey;
-            border-right: none;
-        }
+        cursor: pointer;
     }
     .OrderItem.Selected{
-    	background-color: blue;
+        background-color: blue;
     }    
+   
 }
 
 #check-out {

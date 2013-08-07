@@ -36,19 +36,27 @@
 		    <div id="Main" class="Screen">
                 <div id="order">
                     <div id="order_list">
-                        <div id="Order_title" class="OrderItem">
-                            <span class="Name">Artikel</span>
-                            <span class="SinglePrice">Prijs</span>
-                            <span class="Count">Aantal</span>
-                            <span class="TotalPrice">Totaal</span>
-                            <span class="Remove_button"></span>
+                        <div id="order_item_dummy" class="OrderItem"> 
+                            <table>
+                                <tr>
+                                    <th class="Name">Artikel</th>
+                                    <th class="SinglePrice">P/s</th>
+                                    <th class="Count">Aantal</th>
+                                    <th class="TotalPrice">Totaal</th>
+                                    <th class="Remove_button"><button class="Remove">-</button></th>
+                                </tr>
+                            </table>
                         </div>
-                        <div id="order_item_dummy" class="OrderItem">
-                            <span class="Name"></span>
-                            <span class="SinglePrice"></span>
-                            <span class="Count"></span>
-                            <span class="TotalPrice"></span>
-                            <span class="Remove_button"><button class="Remove">-</button></span>
+                        <div id="order_item_dummy" class="OrderItem">  
+                            <table>
+                                <tr>
+                                    <th class="Name"></th>
+                                    <th class="SinglePrice"></th>
+                                    <th class="Count"></th>
+                                    <th class="TotalPrice"></th>
+                                    <th class="Remove_button"><button class="Remove">-</button></th>
+                                </tr>
+                            </table>    
                         </div>
                     </div>
                     <div id="order_total">
@@ -88,7 +96,6 @@
                 
                
 		    </div>
-		    <div class="betaald">betaald!!</div>
 		    <!-- Payment screen -->
 		    
             <div id="Payment" class="Screen">
