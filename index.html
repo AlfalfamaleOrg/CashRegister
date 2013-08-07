@@ -16,45 +16,49 @@
 		<script src="payment.js"></script>
 	</head>
 	<body>
-		<div id="Login" class="Screen">
-			<div class="Popout">
-				<form id="LoginForm">
-					<input name="name">
-					<input type="password" name="password">
-					<input type="submit">
-				</form>
-			</div>
-		</div>
-		<div id="Main" class="Screen">
-			<div><span class="UserName"></span></div>
-            <div id="order">
-                <div id="order_item_dummy" class="OrderItem">
-                    <span class="Name"></span>
-                    <span class="SinglePrice"></span>
-                    <span class="Count"></span>
-                    <span class="TotalPrice"></span>
-                    <button class="Remove">-</button>
+        <div id="container">
+		    <div id="Login" class="Screen">
+			    <div class="Popout">
+				    <form id="LoginForm">
+					    <input name="name">
+					    <input type="password" name="password">
+					    <input type="submit">
+				    </form>
+			    </div>
+		    </div>
+		    <div id="Main" class="Screen">
+			    <div><span class="UserName"></span></div>
+                <div id="order">
+                    <div id="order_list">
+                        <div id="order_item_dummy" class="OrderItem">
+                            <span class="Name"></span>
+                            <span class="SinglePrice"></span>
+                            <span class="Count"></span>
+                            <span class="TotalPrice"></span>
+                            <button class="Remove">-</button>
+                        </div>
+                    </div>
+                    <div id="order_total">
+                        Totaal: &euro; <span class="Price">0.00</span>
+                    </div>
                 </div>
-                <div id="order_total">
+			    <div id="items">
+				    <div id="item_dummy" class="Item">
+					    <span class="Name"></span><br>
+					    <span class="Price"></span>
+				    </div>
+			    </div>
+		    </div>
+            <div id="Payment" class="Screen">
+                <div id="payment_item_dummy">
+                    <span class="Name"></span>
+                    <span class="Count"></span>
+                    <span class="Price"></span>
+                </div>
+                <div id="payment_total">
                     Totaal: &euro; <span class="Price">0.00</span>
                 </div>
             </div>
-			<div id="items">
-				<div id="item_dummy" class="Item">
-					<span class="Name"></span><br>
-					<span class="Price"></span>
-				</div>
-			</div>
-		</div>
-		<div id="Payment" class="Screen">
-			<div id="payment_item_dummy">
-				<span class="Name"></span>
-                <span class="Count"></span>
-                <span class="Price"></span>
-			</div>
-            <div id="payment_total">
-                Totaal: &euro; <span class="Price">0.00</span>
-            </div>
-		</div>
+        </div>
 	</body>
 </html>
