@@ -12,6 +12,14 @@
   border-radius: @radius;
   box-shadow: 0 0 7px 5px @white-orange;
 }
+.rounded-corners-no-shadow (@radius: 10px, @width: 4px) {
+    border: @width solid @box-orange;
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
 
 .html {
     margin: 0;
@@ -32,7 +40,7 @@ body {
 #order {
     float: left;
     width: 400px;
-    height: 300px;
+    height: 306px;
     margin: 5px auto;
     font-size: 24px;
     .rounded-corners;
@@ -95,11 +103,21 @@ body {
 
 #check-out {
     float: left;
-    width: 156px;
+    width: 160px;
     height: 300px;
     margin: 5px 20px;
-    padding: 3px;
     .rounded-corners;
+    #show_payment {
+        float: left;
+        width: 160px;
+        height: 100px; 
+        color: @white-orange;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        .rounded-corners-no-shadow;
+        background: -moz-radial-gradient(@box-light-orange 40%, @box-orange 100%);  
+    }
 }
 
 #key-pad {
