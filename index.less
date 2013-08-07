@@ -1,6 +1,7 @@
 @box-orange: #F58B0A;
 @box-dark-orange: #8f4e00;
 @box-light-orange: #f5c00a;
+@white-orange: #fff6e3;
 .rounded-corners (@radius: 10px, @width: 4px) {
     border: @width solid @box-orange;
   -webkit-border-radius: @radius;
@@ -8,16 +9,20 @@
   -ms-border-radius: @radius;
   -o-border-radius: @radius;
   border-radius: @radius;
-  box-shadow: 3px 3px 1px @box-dark-orange;
+  box-shadow: 0 0 7px 5px @white-orange;
 }
 
 .html {
     margin: 0;
     padding: 0;
 }
+body {
+    background-color: black;
+    color: white;
+}
 #container {
     width: 1024px;
-    margin: 0 auto;
+    margin: 0 auto; 
 }
 
 #main {
