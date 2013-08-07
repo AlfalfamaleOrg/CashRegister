@@ -17,6 +17,9 @@
 	</head>
 	<body>
         <div id="container">
+        	
+        	<!-- Login screen -->
+        
 		    <div id="Login" class="Screen">
 			    <div class="Popout">
 				    <form id="LoginForm">
@@ -26,6 +29,9 @@
 				    </form>
 			    </div>
 		    </div>
+		    
+		    <!-- Main order screen -->
+		    
 		    <div id="Main" class="Screen">
 			    <div><span class="UserName"></span></div>
                 <div id="order">
@@ -41,6 +47,7 @@
                     <div id="order_total">
                         Totaal: &euro; <span class="Price">0.00</span>
                     </div>
+                    <button id="show_payment">Betalen</button>
                 </div>
 			    <div id="items">
 				    <div id="item_dummy" class="Item">
@@ -49,6 +56,9 @@
 				    </div>
 			    </div>
 		    </div>
+		    
+		    <!-- Payment screen -->
+		    
             <div id="Payment" class="Screen">
                 <div id="payment_item_dummy">
                     <span class="Name"></span>
@@ -58,6 +68,7 @@
                 <div id="payment_total">
                     Totaal: &euro; <span class="Price">0.00</span>
                 </div>
+                <button id="payment_complete">Betaald</button>
             </div>
         </div>
 	</body>

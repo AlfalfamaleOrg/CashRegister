@@ -2,6 +2,14 @@ var Order = {
 
 	items: {},
 
+	init: function(){
+
+		$('show_payment').addEvent('click', function(){
+
+			Payment.show(Order.items);
+		});
+	},
+
 	addItem: function(id, name, price){
 
 		if(this.items[id]){
