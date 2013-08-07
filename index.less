@@ -46,7 +46,7 @@ body {
     .rounded-corners;
         #order_list {
             width: 100%;
-            height: 88%;
+            height: 90%;
         }
         #order_total {
             width: 98%;
@@ -56,15 +56,13 @@ body {
             border-top: 5px solid @box-orange;
         }
         #Order_title {
-            font-size: 17px;
-            text-align: center;
+            font-size: 20px;
             color: green;
-            .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
-                padding: 5px 2px 0 2px;
-                height: 24px
-            }
         }
         .OrderItem {
+          	cursor: pointer;
+    		margin-left: 10px;
+    		
             .Name, .SinglePrice, .Count, .TotalPrice, .Remove_button {
                 display: block;
                 float: left;  
@@ -127,6 +125,7 @@ body {
     margin: 5px 20px 0 0;
     padding: 3px;
     .rounded-corners;
+    
     #keypad_input {
         float: left;
         width: 100%;
@@ -145,6 +144,16 @@ body {
     margin: 5px auto;
     padding: 3px;
     .rounded-corners;
+    #keypad_input {
+        float: left;
+        width: 100%;
+    }
+    .Key {
+        float: left;
+        width: 65px;
+        height: 65px;
+        margin: 2px;
+    }
 }
 
 #items {
