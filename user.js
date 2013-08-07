@@ -39,7 +39,7 @@ var User = {
 
 		$$('.UserName').set('text', name);
 
-		$('Login').hide();
+		$$('.Screen').hide();
 		$('Main').show();
 
 		Main.loadItems();

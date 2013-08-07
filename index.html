@@ -1,6 +1,10 @@
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="index.css">
+		<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+		<link rel="stylesheet/less" type="text/css" href="index.less">
+		
+		<script src="Less/less.js"></script>
+		
 		<script src="Mootools/mootools-core-1.4.5.js"></script>
 		<script src="Mootools/mootools-more-1.4.0.1.js"></script>
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
@@ -9,9 +13,10 @@
 		<script src="user.js"></script>
 		<script src="main.js"></script>
 		<script src="order.js"></script>
+		<script src="payment.js"></script>
 	</head>
 	<body>
-		<div id="Login">
+		<div id="Login" class="Screen">
 			<div class="Popout">
 				<form id="LoginForm">
 					<input name="name">
@@ -20,7 +25,7 @@
 				</form>
 			</div>
 		</div>
-		<div id="Main">
+		<div id="Main" class="Screen">
 			<div><span class="UserName"></span></div>
             <div id="order">
                 <div id="order_item_dummy" class="OrderItem">
@@ -40,6 +45,16 @@
 					<span class="Price"></span>
 				</div>
 			</div>
+		</div>
+		<div id="Payment" class="Screen">
+			<div id="payment_item_dummy">
+				<span class="Name"></span>
+                <span class="Count"></span>
+                <span class="Price"></span>
+			</div>
+            <div id="payment_total">
+                Totaal: &euro; <span class="Price">0.00</span>
+            </div>
 		</div>
 	</body>
 </html>
