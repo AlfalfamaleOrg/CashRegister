@@ -14,6 +14,7 @@
 		<script src="main.js"></script>
 		<script src="order.js"></script>
 		<script src="payment.js"></script>
+		<script src="keypad.js"></script>
 	</head>
 	<body>
         <div id="container">
@@ -54,18 +55,19 @@
                     <button id="logout">Uitloggen</button>
                 </div>
                 <div id="key-pad">
-                	<button id="key_1">1</button>
-                	<button id="key_2">2</button>
-                	<button id="key_3">3</button>
-                	<button id="key_4">4</button>
-                	<button id="key_5">5</button>
-                	<button id="key_6">6</button>
-                	<button id="key_7">7</button>
-                	<button id="key_8">8</button>
-                	<button id="key_9">9</button>
-                	<button id="key_b"><</button>
-                	<button id="key_0">0</button>
-                	<button id="key_c">></button>
+                	<input id="keypad_input">
+                	<button class="Key" data-value="1">1</button>
+                	<button class="Key" data-value="2">2</button>
+                	<button class="Key" data-value="3">3</button>
+                	<button class="Key" data-value="4">4</button>
+                	<button class="Key" data-value="5">5</button>
+                	<button class="Key" data-value="6">6</button>
+                	<button class="Key" data-value="7">7</button>
+                	<button class="Key" data-value="8">8</button>
+                	<button class="Key" data-value="9">9</button>
+                	<button class="Key" data-value="b"><</button>
+                	<button class="Key" data-value="0">0</button>
+                	<button class="Key" data-value="c">></button>
                 </div>
 			    <div id="items">
 				    <div id="item_dummy" class="Item">
