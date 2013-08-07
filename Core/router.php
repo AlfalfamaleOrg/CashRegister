@@ -13,6 +13,9 @@ abstract class Router{
 				'current' => [
 					'userless' => true,
 					'allow' => true
+				],
+				'logout' => [
+					'allow' => true
 				]
 			],
 			'Item' => [

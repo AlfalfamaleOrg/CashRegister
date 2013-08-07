@@ -5,6 +5,7 @@ var User = {
 	init: function(){
 
 		$('LoginForm').addEvent('submit', this.loginFormSubmit);
+		$('logout').addEvent('click', this.logout);
 
 		API.GET('User', 'current', {}, function(data){
 
@@ -30,6 +31,14 @@ var User = {
 		}, function(data){
 
 			User.setUser(data.name);
+		});
+	},
+
+	logout: function(){
+
+		API.POST('User', 'logout', {}, function(){
+
+			location.reload();
 		});
 	},
 

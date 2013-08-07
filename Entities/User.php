@@ -68,6 +68,12 @@ class User extends AjaxEntity{
 		}
 	}
 
+	public function logout($data){
+
+		unset($_SESSION['user']);
+		$this->_success = true;
+	}
+
 	protected function _authenticate($name, $password){
 
 		$result = D::q("
