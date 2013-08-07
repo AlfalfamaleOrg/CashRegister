@@ -46,6 +46,8 @@ var Order = {
 
 	addItem: function(id, name, price){
 
+		$('key-pad').removeEvents();
+
 		if(this.items[id]){
 
 			$('order_item_' + id).getElements('.Count').set('text', ++this.items[id].count);
