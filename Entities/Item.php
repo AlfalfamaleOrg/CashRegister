@@ -22,4 +22,25 @@ class Item extends AjaxEntity{
 			}
 		}
 	}
+
+	public function save($data){
+
+		$id = $data['id'];
+		$name = $data['name'];
+		$price_inc = $data['price_inc'];
+
+		D::q("
+			UPDATE items
+			SET name = '$name',
+				price_inc = $price_inc
+			WHERE id = $id;
+		");
+
+		$this->_success = true;
+		$this->_data = [
+			'id' => $id,
+			'name' => $name,
+			'price' => $price_inc
+		];
+	}
 }

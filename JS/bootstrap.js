@@ -5,4 +5,5 @@ window.addEvent('domready', function(){
 	Payment.init();
 	Keypad.init();
 	User.init();
+	ItemManager.init();
 });

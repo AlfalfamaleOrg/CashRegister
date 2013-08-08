@@ -21,6 +21,9 @@ abstract class Router{
 			'Item' => [
 				'all' => [
 					'allow' => true
+				],
+				'save' => [
+					'allow' => true
 				]
 			]
 		];

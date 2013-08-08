@@ -23,6 +23,7 @@ var Main = {
 			'success': function(data){
 
 				this.insertItems(data.items);
+				ItemManager.insertItems(data.items);
 			}.bind(this)
 		});
 	},
