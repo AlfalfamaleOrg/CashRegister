@@ -10,3 +10,4 @@
 	</div>
 	<button id="payment_complete">Betaald</button>
 	<button id="payment_cancel">Annuleren</button>
+</div>
