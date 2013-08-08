@@ -6,6 +6,7 @@ var Payment = {
 		$('payment_item_dummy').hide();
 
 		$('payment_complete').addEvent('click', this.finishPayment);
+		$('payment_cancel').addEvent('click', Payment.clear);
 	},
 
 	show: function(items){
@@ -36,12 +37,16 @@ var Payment = {
 
 	finishPayment: function(){
 
+		Payment.clear();
+		Order.clear();
+	},
+
+	clear: function(){
+
 		Object.keys(Order.items).each(function(key){
 
 			$('payment_item_' + key).destroy();
 		});
-
-		Order.clear();
 
 		$$('.Screen').hide();
 		$('Main').show();

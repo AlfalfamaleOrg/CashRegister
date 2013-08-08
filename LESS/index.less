@@ -1,0 +1,38 @@
+@box-orange: #F58B0A;
+@box-dark-orange: #8f4e00;
+@box-light-orange: #f5c00a;
+@white-orange: #fff6e3;
+@light-grey: #dadada;
+
+.rounded-corners (@radius: 10px, @width: 4px) {
+	border: @width solid @box-orange;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+	box-shadow: 0 0 7px 5px @white-orange;
+}
+
+.rounded-corners-no-shadow (@radius: 10px, @width: 4px) {
+	border: @width solid @box-orange;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.html {
+	margin: 0;
+	padding: 0;
+}
+
+#container {
+	width: 1024px;
+	margin: 0 auto; 
+}
+
+@import "login";
+@import "main";
+@import "payment";
