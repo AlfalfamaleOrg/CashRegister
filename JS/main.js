@@ -4,7 +4,6 @@ var Main = {
 
 		$('Main').hide();
 		$('item_dummy').hide();
-		$('order_item_dummy').hide();
 	},
 
 	loadItems: function(){
