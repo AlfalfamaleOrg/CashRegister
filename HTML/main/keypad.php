@@ -9,7 +9,7 @@
 	<button class="Key" data-value="7">7</button>
 	<button class="Key" data-value="8">8</button>
 	<button class="Key" data-value="9">9</button>
-	<button class="Key" data-value="b"><</button>
+	<button class="Key" data-value="b">&lt;</button>
 	<button class="Key" data-value="0">0</button>
-	<button class="Key" data-value="c">></button>
+	<button class="Key" data-value="c">&gt;</button>
 </div>
