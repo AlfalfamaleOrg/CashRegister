@@ -1,37 +1,37 @@
 var API = {
 
-	POST: function(entity, action, data, success, failure){
+	POST: function(entity, action, params){
 
-		this.CALL('POST', entity, action, data, success, failure);
+		this.CALL('POST', entity, action, params);
 	},
 
-	GET: function(entity, action, data, success, failure){
+	GET: function(entity, action, params){
 
-		this.CALL('GET', entity, action, data, success, failure);
+		this.CALL('GET', entity, action, params);
 	},
 
-	CALL: function(method, entity, action, data, success, failure){
+	CALL: function(method, entity, action, params){
 
 		new Request({
 			method: method,
 			url: 'ajax.php?entity=' + entity + '&action=' + action,
-			data: data,
+			data: params.data,
 			onSuccess: function(response){
 
 				var data = JSON.decode(response);
 
 				if(data.success){
 
-					if(typeof success == 'function'){
+					if(typeof params.success == 'function'){
 
-						success(data.data);
+						params.success(data.data);
 					}
 				}
 				else{
 
-					if(typeof failure == 'function'){
+					if(typeof params.failure == 'function'){
 
-						failure(data.message);
+						params.failure(data.message);
 					}
 				}
 			}

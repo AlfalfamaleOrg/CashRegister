@@ -21,7 +21,7 @@ var Payment = {
 			payment_item.getElements('.Name').set('text', items[key].name);
 			payment_item.getElements('.Count').set('text', items[key].count);
 
-			var price = items[key].count *  items[key].price;
+			var price = items[key].count * items[key].price;
 			total += price;
 
 			payment_item.getElements('.Price').set('text', price.toFixed(2));
@@ -31,8 +31,7 @@ var Payment = {
 
 		$('payment_total').getElements('.Price').set('text', total.toFixed(2));
 
-		$$('.Screen').hide();
-		$('Payment').show();
+		Screen.show('Payment');
 	},
 
 	finishPayment: function(){
@@ -48,7 +47,6 @@ var Payment = {
 			$('payment_item_' + key).destroy();
 		});
 
-		$$('.Screen').hide();
-		$('Main').show();
+		Screen.show('Main');
 	}
 };

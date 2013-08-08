@@ -7,10 +7,12 @@ var User = {
 		$('LoginForm').addEvent('submit', this.loginFormSubmit.bind(this));
 		$('logout').addEvent('click', this.logout.bind(this));
 
-		API.GET('User', 'current', {}, function(data){
+		API.GET('User', 'current', {
+			'success': function(data){
 
-			this.setUser(data.name);
-		}.bind(this));
+				this.setUser(data.name);
+			}.bind(this)
+		});
 	},
 
 	loginFormSubmit: function(event){
@@ -26,19 +28,24 @@ var User = {
 	login: function(password){
 
 		API.POST('User', 'login', {
-			name: this.name,
-			password: password
-		}, function(data){
+			'data': {
+				name: this.name,
+				password: password
+			},
+			'success': function(data){
 
-			this.setUser(data.name);
-		}.bind(this));
+				this.setUser(data.name);
+			}.bind(this)
+		});
 	},
 
 	logout: function(){
 
-		API.POST('User', 'logout', {}, function(){
+		API.POST('User', 'logout', {
+			'success': function(){
 
-			location.reload();
+				location.reload();
+			}
 		});
 	},
 
@@ -48,9 +55,8 @@ var User = {
 
 		$$('.UserName').set('text', name);
 
-		$$('.Screen').hide();
-		$('Main').show();
-
 		Main.loadItems();
+
+		Screen.show('Main');
 	}
 };

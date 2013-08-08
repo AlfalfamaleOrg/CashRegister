@@ -8,9 +8,12 @@ var Main = {
 
 	loadItems: function(){
 
-		API.GET('Item', 'all', {}, function(data){
-			this.insertItems(data.items);
-		}.bind(this));
+		API.GET('Item', 'all', {
+			'success': function(data){
+
+				this.insertItems(data.items);
+			}.bind(this)
+		});
 	},
 
 	insertItems: function(items){
