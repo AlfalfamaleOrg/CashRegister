@@ -2,29 +2,45 @@ var Keypad = {
 
 	init: function(){
 
-		$('key-pad').getElements('.Key').addEvent('click', this.keyPress);
+		$('key-pad').getElements('.Key').addEvent(
+			'click', this.keyPress.bind(this)
+		);
 	},
 
 	keyPress: function(event){
 
 		var key = event.target.get('data-value');
+		var field = $('keypad_input');
 
 		if(key == 'c'){
 
-			$('key-pad').fireEvent('submit', $('keypad_input').value);
-			$('keypad_input').value = '';
+			this.fireEvent(field.value);
+			field.value = '';
 		}
 		else if(key == 'b'){
 
-			var new_value = $('keypad_input').value.substring(0, $('keypad_input').value.length - 1);
-
-			$('keypad_input').value = new_value;
+			field.value = field.value.substring(0, field.value.length - 1);
 		}
 		else{
 
-			var current = $('keypad_input').value;
-
-			$('keypad_input').value = (current + key);
+			field.value = field.value + key;
 		}
+	},
+
+	addEvent: function(callback){
+
+		this.removeEvents();
+		$('key-pad').addEvent('submit', callback);
+	},
+
+	fireEvent: function(value){
+
+		$('key-pad').fireEvent('submit', value);
+		this.removeEvents();
+	},
+
+	removeEvents: function(){
+
+		$('key-pad').removeEvents();
 	}
 };

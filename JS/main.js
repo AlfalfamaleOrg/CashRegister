@@ -9,8 +9,8 @@ var Main = {
 	loadItems: function(){
 
 		API.GET('Item', 'all', {}, function(data){
-			Main.insertItems(data.items);
-		});
+			this.insertItems(data.items);
+		}.bind(this));
 	},
 
 	insertItems: function(items){
@@ -19,15 +19,19 @@ var Main = {
 
 			var product = $('item_dummy').clone();
 
-			product.set('id', 'item_' + item.id);
-			product.set('data-id', item.id);
+			product.set({
+				'id': ('item_' + item.id),
+				'data-id': item.id,
+				'events': {
+					'click': function(event){
+
+						Order.addItem(item.id, item.name, item.price);
+					}
+				}
+			});
+
 			product.getElements('.Name').set('text', item.name);
 			product.getElements('.Price').set('text', item.price);
-
-			product.addEvent('click', function(event){
-
-				Order.addItem(item.id, item.name, item.price);
-			});
 
 			product.inject('item_dummy', 'after').show();
 		});

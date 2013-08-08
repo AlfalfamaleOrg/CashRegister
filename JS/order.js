@@ -6,101 +6,93 @@ var Order = {
 
 		$('show_payment').addEvent('click', function(){
 
-			Payment.show(Order.items);
-		});
+			Payment.show(this.items);
+		}.bind(this));
 
-		$('clear_order').addEvent('click', this.clear);
+		$('clear_order').addEvent('click', this.clear.bind(this));
 	},
 
 	selectItem: function(event){
 
-		$('key-pad').removeEvents();
-
-		var target;
-
-		if(event.target.hasClass('OrderItem')){
-
-			target = event.target;
-		}
-		else{
-
-			target = event.target.getParent('.OrderItem');
-		}
-
-		if(target.hasClass('Selected')){
-
-			target.removeClass('Selected');
-			return;
-		}
-
+		var target = Selection.findElement(event.target, 'OrderItem');
 		var id = target.get('data-id');
 
-		$$('.Selected').removeClass('Selected');
-		target.addClass('Selected');
+		Selection.select(target);
 
-		$('key-pad').addEvent('submit', function(value){
+		Keypad.addEvent(function(value){
 
-			this.removeEvents();
 			Order.setCount(id, value);
-			target.removeClass('Selected');
+			Selection.deselect(target);
 		});
 	},
 
 	addItem: function(id, name, price){
 
-		$('key-pad').removeEvents();
+		Selection.deselectAll();
+		var order_item = null;
 
 		if(this.items[id]){
 
-			$('order_item_' + id).getElements('.Count').set('text', ++this.items[id].count);
-			$('order_item_' + id).getElements('.TotalPrice').set(
-				'text',
-				parseFloat(this.items[id].count * this.items[id].price, 10).toFixed(2)
-			);
+			this.setCount(id, ++this.items[id].count);
+
+			order_item = $('order_item_' + id);
 		}
 		else{
 
-			this.items[id] = {name: name, price: parseFloat(price, 10).toFixed(2), count: 1};
+			this.items[id] = {
+				name: name,
+				price: parseFloat(price, 10),
+				count: 1
+			};
 
-			var order_item = $('order_item_dummy').clone();
+			order_item = $('order_item_dummy').clone();
 
-			order_item.set('id', 'order_item_' + id);
-			order_item.set('data-id', id);
+			order_item.set({
+				'id': 'order_item_' + id,
+				'data-id': id,
+				'events': {
+					'click': this.selectItem
+				}
+			});
+
 			order_item.getElements('.Name').set('text', name);
-			order_item.getElements('.TotalPrice, .SinglePrice').set('text', parseFloat(price, 10).toFixed(2));
-			order_item.getElements('.Count').set('text', 1);
+			order_item.getElements('.SinglePrice').set('text', this.items[id].price.toFixed(2));
 
 			order_item.getElements('.Remove').addEvent('click', function(){
 
 				Order.removeItem(id);
 			});
 
-			order_item.addEvent('click', this.selectItem);
-
 			order_item.inject('order_item_dummy', 'before').show();
+
+			this.setCount(id, 1);
 		}
 
-		if(!$('order_item_' + id).hasClass('Selected')){
-
-			$('order_item_' + id).fireEvent('click', {target: $('order_item_' + id)});
-		}
+		Selection.select(order_item);
 
 		this.calculateTotal();
 
-		$('key-pad').addEvent('submit', function(value){
+		Keypad.addEvent(function(value){
 
-			this.removeEvents();
 			Order.setCount(id, value);
+			Selection.deselect(order_item);
 		});
 	},
 
 	setCount: function(id, value){
 
+		if(value == 0){
+
+			delete this.items[id];
+			$('order_item_' + id).destroy();
+			return;
+		}
+
 		this.items[id].count = value;
 		$('order_item_' + id).getElements('.Count').set('text', value);
 		$('order_item_' + id).getElements('.TotalPrice').set(
 			'text',
-			parseFloat(value * this.items[id].price, 10).toFixed(2)
+			(value * this.items[id].price).toFixed(2)
 		);
 		this.calculateTotal();
 	},
@@ -111,11 +103,11 @@ var Order = {
 
 		Object.keys(this.items).each(function(key){
 
-			if(Order.items[key]){
+			if(this.items[key]){
 
-				total += (Order.items[key].count * Order.items[key].price);
+				total += (this.items[key].count * this.items[key].price);
 			}
-		});
+		}.bind(this));
 
 		$('order_total').getElements('.Price').set('text', total.toFixed(2));
 	},
@@ -124,19 +116,7 @@ var Order = {
 
 		if(this.items[id]){
 
-			if(--this.items[id].count == 0){
-
-				this.items[id] = false;
-				$('order_item_' + id).destroy();
-			}
-			else{
-
-				$('order_item_' + id).getElements('.Count').set('text', this.items[id].count);
-				$('order_item_' + id).getElements('.TotalPrice').set(
-					'text',
-					parseFloat(this.items[id].count * this.items[id].price, 10).toFixed(2)
-				);
-			}
+			this.setCount(id, --this.items[id].count);
 		}
 
 		this.calculateTotal();
@@ -144,12 +124,12 @@ var Order = {
 
 	clear: function(){
 
-		Object.keys(Order.items).each(function(key){
+		Object.keys(this.items).each(function(key){
 
+			delete this.items[key];
 			$('order_item_' + key).destroy();
 		});
 
-		Order.items = {};
-		Order.calculateTotal();
+		this.calculateTotal();
 	}
 };

@@ -4,13 +4,13 @@ var User = {
 
 	init: function(){
 
-		$('LoginForm').addEvent('submit', this.loginFormSubmit);
-		$('logout').addEvent('click', this.logout);
+		$('LoginForm').addEvent('submit', this.loginFormSubmit.bind(this));
+		$('logout').addEvent('click', this.logout.bind(this));
 
 		API.GET('User', 'current', {}, function(data){
 
-			User.setUser(data.name);
-		});
+			this.setUser(data.name);
+		}.bind(this));
 	},
 
 	loginFormSubmit: function(event){
@@ -19,8 +19,8 @@ var User = {
 		var name = event.target.name.value;
 		var password = event.target.password.value;
 
-		User.name = name;
-		User.login(password);
+		this.name = name;
+		this.login(password);
 	},
 
 	login: function(password){
@@ -30,8 +30,8 @@ var User = {
 			password: password
 		}, function(data){
 
-			User.setUser(data.name);
-		});
+			this.setUser(data.name);
+		}.bind(this));
 	},
 
 	logout: function(){

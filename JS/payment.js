@@ -5,8 +5,8 @@ var Payment = {
 		$('Payment').hide();
 		$('payment_item_dummy').hide();
 
-		$('payment_complete').addEvent('click', this.finishPayment);
-		$('payment_cancel').addEvent('click', Payment.clear);
+		$('payment_complete').addEvent('click', this.finishPayment.bind(this));
+		$('payment_cancel').addEvent('click', this.clear);
 	},
 
 	show: function(items){
@@ -37,7 +37,7 @@ var Payment = {
 
 	finishPayment: function(){
 
-		Payment.clear();
+		this.clear();
 		Order.clear();
 	},
 
