@@ -2,6 +2,13 @@ var Order = {
 
 	items: {},
 
+	/**
+	 * Initialize the Order screen
+	 *
+	 * -Add click event for the pay button
+	 * -Add click event for the clear button
+	 */
+
 	init: function(){
 
 		$('show_payment').addEvent('click', function(){
@@ -12,32 +19,58 @@ var Order = {
 		$('clear_order').addEvent('click', this.clear.bind(this));
 	},
 
+	/**
+	 * Select an item in the order screen
+	 *
+	 * @param event
+	 */
+
 	selectItem: function(event){
 
 		var target = Selection.findElement(event.target, 'OrderItem');
-		var id = target.get('data-id');
+
+		// Set selected status for this item
 
 		Selection.select(target);
 
+		// Add keypad event to update the count for this item
+
 		Keypad.addEvent(function(value){
 
-			Order.setCount(id, value);
+			Order.setCount(target.get('data-id'), value);
 			Selection.deselect(target);
 		});
 	},
+
+	/**
+	 * Add item to the order.
+	 *
+	 * @param id
+	 * @param name
+	 * @param price
+	 */
 
 	addItem: function(id, name, price){
 
 		Selection.deselectAll();
 		var order_item = null;
 
+		// If item already exists in the current order
+
 		if(this.items[id]){
+
+			// Increase count
 
 			this.setCount(id, ++this.items[id].count);
 
 			order_item = $('order_item_' + id);
 		}
+
+		// If this item does not exist in the current order
+
 		else{
+
+			// Add item to current items
 
 			this.items[id] = {
 				name: name,
@@ -65,12 +98,18 @@ var Order = {
 
 			order_item.inject('order_item_dummy', 'before').show();
 
+			// Set the count
+
 			this.setCount(id, 1);
 		}
+
+		// Select this item in the order
 
 		Selection.select(order_item);
 
 		this.calculateTotal();
+
+		// Add keypad event to update the count for this item
 
 		Keypad.addEvent(function(value){
 
@@ -79,7 +118,16 @@ var Order = {
 		});
 	},
 
+	/**
+	 * Update the counter to value for item with id
+	 *
+	 * @param id
+	 * @param value
+	 */
+
 	setCount: function(id, value){
+
+		// Remove item if value is zero
 
 		if(value == 0){
 
@@ -87,6 +135,8 @@ var Order = {
 			$('order_item_' + id).destroy();
 			return;
 		}
+
+		// Set the count
 
 		this.items[id].count = value;
 		$('order_item_' + id).getElements('.Count').set('text', value);
@@ -96,6 +146,10 @@ var Order = {
 		);
 		this.calculateTotal();
 	},
+
+	/**
+	 * Calculate the total
+	 */
 
 	calculateTotal: function(){
 
@@ -112,6 +166,12 @@ var Order = {
 		$('order_total').getElements('.Price').set('text', total.toFixed(2));
 	},
 
+	/**
+	 * Remove an item from the order
+	 *
+	 * @param id
+	 */
+
 	removeItem: function(id){
 
 		if(this.items[id]){
@@ -121,6 +181,10 @@ var Order = {
 
 		this.calculateTotal();
 	},
+
+	/**
+	 * Clear current order
+	 */
 
 	clear: function(){
 

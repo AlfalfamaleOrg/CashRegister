@@ -1,11 +1,23 @@
 var Keypad = {
 
+	/**
+	 * Initialize the keypad
+	 *
+	 * -Add click event to the numbers
+	 */
+
 	init: function(){
 
 		$('key-pad').getElements('.Key').addEvent(
 			'click', this.keyPress.bind(this)
 		);
 	},
+
+	/**
+	 * Catch the click event on a key
+	 *
+	 * @param event
+	 */
 
 	keyPress: function(event){
 
@@ -27,17 +39,38 @@ var Keypad = {
 		}
 	},
 
+	/**
+	 * Add the event to call when keypad enter is pressed
+	 *
+	 * @param callback
+	 */
+
 	addEvent: function(callback){
+
+		// Remove previous events, only one event can exist at the same time
 
 		this.removeEvents();
 		$('key-pad').addEvent('submit', callback);
 	},
 
+	/**
+	 * Fire the event
+	 *
+	 * @param value
+	 */
+
 	fireEvent: function(value){
 
 		$('key-pad').fireEvent('submit', value);
+
+		// Remove all events after firing it.
+
 		this.removeEvents();
 	},
+
+	/**
+	 * Remove all events
+	 */
 
 	removeEvents: function(){
 

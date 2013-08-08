@@ -1,10 +1,21 @@
 var Main = {
 
+	/**
+	 * Initialize the main screen.
+	 *
+	 * -Hide the main screen
+	 * -Hide the dummy item
+	 */
+
 	init: function(){
 
 		$('Main').hide();
 		$('item_dummy').hide();
 	},
+
+	/**
+	 * Load all items from the server
+	 */
 
 	loadItems: function(){
 
@@ -15,6 +26,12 @@ var Main = {
 			}.bind(this)
 		});
 	},
+
+	/**
+	 * Insert all loaded items
+	 *
+	 * @param items
+	 */
 
 	insertItems: function(items){
 
