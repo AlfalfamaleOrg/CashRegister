@@ -11,33 +11,45 @@ var ItemManager = {
 
 		$('ItemManagerShowMainButton').addEvent('click', function(){
 
-			Screen.show('Main');
+			location.reload();
 		});
 
-		$('SaveItem').addEvent('submit', this.saveItem);
+		$('SaveItem').addEvent('submit', this.formSubmit);
+		$('ItemManagerClearFormButton').addEvent('click', function(){
+
+			ItemManager.clearForm();
+			Selection.deselectAll();
+		});
+
+		$('ItemManagerDeleteItemButton').addEvent('click', function(){
+
+			ItemManager.deleteItem($('SaveItem'));
+		});
 	},
 
 	insertItems: function(items){
 
-		items.each(function(item){
+		items.each(ItemManager.insertItem);
+	},
 
-			ItemManager.items[item.id] = item;
+	insertItem: function(item){
 
-			var product = $('manage_item_dummy').clone();
+		ItemManager.items[item.id] = item;
 
-			product.set({
-				'id': ('manage_item_' + item.id),
-				'data-id': item.id,
-				'events': {
-					'click': ItemManager.selectItem
-				}
-			});
+		var product = $('manage_item_dummy').clone();
 
-			product.getElements('.Name').set('text', item.name);
-			product.getElements('.Price').set('text', item.price);
-
-			product.inject('manage_item_dummy', 'after').show();
+		product.set({
+			'id': ('manage_item_' + item.id),
+			'data-id': item.id,
+			'events': {
+				'click': ItemManager.selectItem
+			}
 		});
+
+		product.getElements('.Name').set('text', item.name);
+		product.getElements('.Price').set('text', item.price);
+
+		product.inject('manage_item_dummy', 'before').show();
 	},
 
 	selectItem: function(event){
@@ -64,11 +76,23 @@ var ItemManager = {
 		$('SaveItem').price_inc.value = '';
 	},
 
-	saveItem: function(event){
+	formSubmit: function(event){
 
 		event.preventDefault();
 
 		var form = event.target;
+
+		if(form.id.value){
+
+			ItemManager.saveItem(form);
+		}
+		else{
+
+			ItemManager.addItem(form);
+		}
+	},
+
+	saveItem: function(form){
 
 		API.POST('Item', 'save', {
 			'data': {
@@ -77,6 +101,36 @@ var ItemManager = {
 				price_inc: form.price_inc.value
 			},
 			'success': ItemManager.updateItem
+		});
+	},
+
+	addItem: function(form){
+
+		API.POST('Item', 'add', {
+			'data': {
+				name: form.name.value,
+				price_inc: form.price_inc.value
+			},
+			'success': function(data){
+
+				ItemManager.insertItem(data);
+				ItemManager.clearForm();
+			}
+		});
+	},
+
+	deleteItem: function(form){
+
+		API.POST('Item', 'delete', {
+			'data': {
+				id: form.id.value
+			},
+			'success': function(){
+
+				$('manage_item_' + form.id.value).destroy();
+				ItemManager.clearForm();
+				Selection.deselectAll();
+			}
 		});
 	},
 

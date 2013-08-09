@@ -16,7 +16,7 @@ var Order = {
 			Payment.show(this.items);
 		}.bind(this));
 
-		$('clear_order').addEvent('click', this.clear.bind(this));
+		$('clear_order').addEvent('click', this.clear);
 	},
 
 	/**
@@ -188,12 +188,12 @@ var Order = {
 
 	clear: function(){
 
-		Object.keys(this.items).each(function(key){
+		Object.keys(Order.items).each(function(key){
 
-			delete this.items[key];
+			delete Order.items[key];
 			$('order_item_' + key).destroy();
 		});
 
-		this.calculateTotal();
+		Order.calculateTotal();
 	}
 };

@@ -24,6 +24,12 @@ abstract class Router{
 				],
 				'save' => [
 					'allow' => true
+				],
+				'add' => [
+					'allow' => true
+				],
+				'delete' => [
+					'allow' => true
 				]
 			]
 		];

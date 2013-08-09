@@ -54,7 +54,7 @@ var Main = {
 			product.getElements('.Name').set('text', item.name);
 			product.getElements('.Price').set('text', item.price);
 
-			product.inject('item_dummy', 'after').show();
+			product.inject('item_dummy', 'before').show();
 		});
 	}
 };

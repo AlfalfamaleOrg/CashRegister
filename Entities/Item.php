@@ -43,4 +43,30 @@ class Item extends AjaxEntity{
 			'price' => $price_inc
 		];
 	}
+
+	public function add($data){
+
+		$name = $data['name'];
+		$price_inc = $data['price_inc'];
+
+		D::q("
+			INSERT INTO items (name, price_inc)
+			VALUES ('$name', $price_inc)
+		");
+
+		$this->_success = true;
+		$this->_data = [
+			'id' => D::id(),
+			'name' => $name,
+			'price' => $price_inc
+		];
+	}
+
+	public function delete($data){
+
+		$id = $data['id'];
+
+		D::q("DELETE FROM items WHERE id = $id");
+		$this->_success = true;
+	}
 }
