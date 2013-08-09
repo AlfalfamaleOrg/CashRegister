@@ -1,3 +1,6 @@
+/*jslint browser: true, white: true*/
+/*global Main, Order, Payment, Keypad, User, ItemManager, API, $, Selection, Screen, ParseFloat*/
+
 var Main = {
 
 	/**
@@ -9,6 +12,8 @@ var Main = {
 
 	init: function(){
 
+		"use strict";
+
 		$('Main').hide();
 		$('item_dummy').hide();
 	},
@@ -18,6 +23,8 @@ var Main = {
 	 */
 
 	loadItems: function(){
+
+		"use strict";
 
 		API.GET('Item', 'all', {
 			'success': function(data){
@@ -36,6 +43,8 @@ var Main = {
 
 	insertItems: function(items){
 
+		"use strict";
+
 		items.each(function(item){
 
 			var product = $('item_dummy').clone();
@@ -44,7 +53,7 @@ var Main = {
 				'id': ('item_' + item.id),
 				'data-id': item.id,
 				'events': {
-					'click': function(event){
+					'click': function(){
 
 						Order.addItem(item.id, item.name, item.price);
 					}

@@ -1,5 +1,5 @@
 <div id="ItemManager" class="Screen">
-	<button id="ItemManagerShowMainButton">Terug</button>
+	<button class="ChangeScreen" data-screen="reload">Terug</button>
 	<table>
 		<tr>
 			<th>Naam</th>
@@ -10,10 +10,10 @@
 			<td class="Price"></td>
 		</tr>
 	</table>
-	<button id="ItemManagerClearFormButton">Nieuw product</button>
+	<button class="ClearSelection">Nieuw product</button>
 	<button id="ItemManagerDeleteItemButton">Verwijder</button>
 	<div>
-		<form id="SaveItem">
+		<form id="ManageItemForm">
 			<input type="hidden" name="id">
 			<label>Naam: <input name="name"></label><br>
 			<label>Prijs: <input type="number" name="price_inc"></label><Br>

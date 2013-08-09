@@ -1,8 +1,13 @@
+/*jslint browser: true, white: true*/
+/*global $, $$, API, Screen*/
+
 var User = {
 
 	name: null,
 
 	init: function(){
+
+		"use strict";
 
 		$('LoginForm').addEvent('submit', this.loginFormSubmit.bind(this));
 		$('logout').addEvent('click', this.logout.bind(this));
@@ -17,15 +22,19 @@ var User = {
 
 	loginFormSubmit: function(event){
 
+		"use strict";
+
 		event.preventDefault();
-		var name = event.target.name.value;
-		var password = event.target.password.value;
+		var name = event.target.name.value,
+			password = event.target.password.value;
 
 		this.name = name;
 		this.login(password);
 	},
 
 	login: function(password){
+
+		"use strict";
 
 		API.POST('User', 'login', {
 			'data': {
@@ -41,6 +50,8 @@ var User = {
 
 	logout: function(){
 
+		"use strict";
+
 		API.POST('User', 'logout', {
 			'success': function(){
 
@@ -50,6 +61,8 @@ var User = {
 	},
 
 	setUser: function(name){
+
+		"use strict";
 
 		this.name = name;
 

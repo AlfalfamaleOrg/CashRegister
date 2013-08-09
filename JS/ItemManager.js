@@ -1,38 +1,35 @@
+/*jslint browser: true, white: true*/
+/*global Main, Order, Payment, Keypad, User, ItemManager, API, $, Selection, Screen, ParseFloat*/
+
 var ItemManager = {
 
 	items: {},
+	currentId: {},
+	form: null,
 
 	init: function(){
 
-		$('ManageItemsButton').addEvent('click', function(){
+		"use strict";
 
-			Screen.show('ItemManager');
-		});
+		this.form = $('ManageItemForm');
 
-		$('ItemManagerShowMainButton').addEvent('click', function(){
+		this.form.addEvent('submit', this.formSubmit);
 
-			location.reload();
-		});
+		$('ItemManager').getElements('.ClearSelection').addEvent('click', this.clearSelection.bind(this));
 
-		$('SaveItem').addEvent('submit', this.formSubmit);
-		$('ItemManagerClearFormButton').addEvent('click', function(){
-
-			ItemManager.clearForm();
-			Selection.deselectAll();
-		});
-
-		$('ItemManagerDeleteItemButton').addEvent('click', function(){
-
-			ItemManager.deleteItem($('SaveItem'));
-		});
+		$('ItemManagerDeleteItemButton').addEvent('click', this.deleteItem.bind(this));
 	},
 
 	insertItems: function(items){
 
-		items.each(ItemManager.insertItem);
+		"use strict";
+
+		items.each(this.insertItem.bind(this));
 	},
 
 	insertItem: function(item){
+
+		"use strict";
 
 		ItemManager.items[item.id] = item;
 
@@ -50,33 +47,41 @@ var ItemManager = {
 		product.getElements('.Price').set('text', item.price);
 
 		product.inject('manage_item_dummy', 'before').show();
-	},
+
+		ItemManager.clearSelection();
+	}.bind(this),
 
 	selectItem: function(event){
 
+		"use strict";
+
 		var target = Selection.findElement(event.target, 'Item');
-		var id = target.get('data-id');
+
+		ItemManager.currentId = target.get('data-id');
 
 		Selection.select(target);
 
-		ItemManager.setForm(ItemManager.items[id]);
+		var item = ItemManager.items[ItemManager.currentId];
+
+		ItemManager.form.name.value = item.name;
+		ItemManager.form.id.value = item.id;
+		ItemManager.form.price_inc.value = item.price;
 	},
 
-	setForm: function(item){
+	clearSelection: function(){
 
-		$('SaveItem').name.value = item.name;
-		$('SaveItem').id.value = item.id;
-		$('SaveItem').price_inc.value = item.price;
-	},
+		"use strict";
 
-	clearForm: function(){
+		this.form.name.value = '';
+		this.form.id.value = '';
+		this.form.price_inc.value = '';
 
-		$('SaveItem').name.value = '';
-		$('SaveItem').id.value = '';
-		$('SaveItem').price_inc.value = '';
+		Selection.deselectAll();
 	},
 
 	formSubmit: function(event){
+
+		"use strict";
 
 		event.preventDefault();
 
@@ -94,6 +99,8 @@ var ItemManager = {
 
 	saveItem: function(form){
 
+		"use strict";
+
 		API.POST('Item', 'save', {
 			'data': {
 				id: form.id.value,
@@ -106,39 +113,38 @@ var ItemManager = {
 
 	addItem: function(form){
 
+		"use strict";
+
 		API.POST('Item', 'add', {
 			'data': {
 				name: form.name.value,
 				price_inc: form.price_inc.value
 			},
-			'success': function(data){
-
-				ItemManager.insertItem(data);
-				ItemManager.clearForm();
-			}
+			'success': ItemManager.insertItem
 		});
 	},
 
-	deleteItem: function(form){
+	deleteItem: function(){
+
+		"use strict";
 
 		API.POST('Item', 'delete', {
 			'data': {
-				id: form.id.value
+				id: this.form.id.value
 			},
 			'success': function(){
 
-				$('manage_item_' + form.id.value).destroy();
-				ItemManager.clearForm();
-				Selection.deselectAll();
-			}
+				$('manage_item_' + this.form.id.value).destroy();
+				this.clearSelection();
+			}.bind(this)
 		});
 	},
 
 	updateItem: function(data){
 
-		Selection.deselectAll();
+		"use strict";
 
-		ItemManager.clearForm();
+		ItemManager.clearSelection();
 
 		ItemManager.items[data.id] = data;
 

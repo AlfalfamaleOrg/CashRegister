@@ -1,6 +1,11 @@
+/*jslint browser: true, white: true*/
+/*global Main, Order, Payment, Keypad, User, ItemManager, API, $, Selection, Screen, ParseFloat*/
+
 var Payment = {
 
 	init: function(){
+
+		"use strict";
 
 		$('Payment').hide();
 		$('payment_item_dummy').hide();
@@ -11,17 +16,19 @@ var Payment = {
 
 	show: function(items){
 
+		"use strict";
+
 		var total = 0;
 
 		Object.keys(items).each(function(key){
 
-			var payment_item = $('payment_item_dummy').clone();
+			var payment_item = $('payment_item_dummy').clone(),
+				price = items[key].count * items[key].price;
 
 			payment_item.set('id', 'payment_item_' + key);
 			payment_item.getElements('.Name').set('text', items[key].name);
 			payment_item.getElements('.Count').set('text', items[key].count);
 
-			var price = items[key].count * items[key].price;
 			total += price;
 
 			payment_item.getElements('.Price').set('text', price.toFixed(2));
@@ -36,11 +43,15 @@ var Payment = {
 
 	finishPayment: function(){
 
+		"use strict";
+
 		this.clear();
 		Order.clear();
 	},
 
 	clear: function(){
+
+		"use strict";
 
 		Object.keys(Order.items).each(function(key){
 

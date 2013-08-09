@@ -1,3 +1,6 @@
+/*jslint browser: true, white: true*/
+/*global Main, Order, Payment, Keypad, User, ItemManager, API, $, Selection, Screen, ParseFloat*/
+
 var Keypad = {
 
 	/**
@@ -7,6 +10,8 @@ var Keypad = {
 	 */
 
 	init: function(){
+
+		"use strict";
 
 		$('key-pad').getElements('.Key').addEvent(
 			'click', this.keyPress.bind(this)
@@ -21,15 +26,17 @@ var Keypad = {
 
 	keyPress: function(event){
 
-		var key = event.target.get('data-value');
-		var field = $('keypad_input');
+		"use strict";
 
-		if(key == 'c'){
+		var key = event.target.get('data-value'),
+			field = $('keypad_input');
+
+		if(key === 'c'){
 
 			this.fireEvent(field.value);
 			field.value = '';
 		}
-		else if(key == 'b'){
+		else if(key === 'b'){
 
 			field.value = field.value.substring(0, field.value.length - 1);
 		}
@@ -47,6 +54,8 @@ var Keypad = {
 
 	addEvent: function(callback){
 
+		"use strict";
+
 		// Remove previous events, only one event can exist at the same time
 
 		this.removeEvents();
@@ -61,6 +70,8 @@ var Keypad = {
 
 	fireEvent: function(value){
 
+		"use strict";
+
 		$('key-pad').fireEvent('submit', value);
 
 		// Remove all events after firing it.
@@ -73,6 +84,8 @@ var Keypad = {
 	 */
 
 	removeEvents: function(){
+
+		"use strict";
 
 		$('key-pad').removeEvents();
 	}

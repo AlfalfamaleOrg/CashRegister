@@ -1,3 +1,3 @@
 <div id="dashboard">
-	<button id="ManageItemsButton">Beheer producten</button>
+	<button class="ChangeScreen" data-screen="ItemManager">Beheer producten</button>
 </div>

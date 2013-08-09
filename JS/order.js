@@ -1,3 +1,6 @@
+/*jslint browser: true, white: true*/
+/*global Main, Order, Payment, Keypad, User, ItemManager, API, $, Selection, Screen, ParseFloat*/
+
 var Order = {
 
 	items: {},
@@ -10,6 +13,8 @@ var Order = {
 	 */
 
 	init: function(){
+
+		"use strict";
 
 		$('show_payment').addEvent('click', function(){
 
@@ -26,6 +31,8 @@ var Order = {
 	 */
 
 	selectItem: function(event){
+
+		"use strict";
 
 		var target = Selection.findElement(event.target, 'OrderItem');
 
@@ -52,6 +59,8 @@ var Order = {
 
 	addItem: function(id, name, price){
 
+		"use strict";
+
 		Selection.deselectAll();
 		var order_item = null;
 
@@ -61,7 +70,9 @@ var Order = {
 
 			// Increase count
 
-			this.setCount(id, ++this.items[id].count);
+			this.items[id].count += 1;
+
+			this.setCount(id, this.items[id].count);
 
 			order_item = $('order_item_' + id);
 		}
@@ -127,9 +138,11 @@ var Order = {
 
 	setCount: function(id, value){
 
+		"use strict";
+
 		// Remove item if value is zero
 
-		if(value == 0){
+		if(value === 0 || value === '0'){
 
 			delete this.items[id];
 			$('order_item_' + id).destroy();
@@ -153,6 +166,8 @@ var Order = {
 
 	calculateTotal: function(){
 
+		"use strict";
+
 		var total = 0;
 
 		Object.keys(this.items).each(function(key){
@@ -174,9 +189,13 @@ var Order = {
 
 	removeItem: function(id){
 
+		"use strict";
+
 		if(this.items[id]){
 
-			this.setCount(id, --this.items[id].count);
+			this.items[id].count -= 1;
+
+			this.setCount(id, this.items[id].count);
 		}
 
 		this.calculateTotal();
@@ -187,6 +206,8 @@ var Order = {
 	 */
 
 	clear: function(){
+
+		"use strict";
 
 		Object.keys(Order.items).each(function(key){
 
