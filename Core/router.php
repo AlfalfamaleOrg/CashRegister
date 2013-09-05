@@ -31,6 +31,11 @@ abstract class Router{
 				'delete' => [
 					'allow' => true
 				]
+			],
+			'Order' => [
+				'add' => [
+					'allow' => true
+				]
 			]
 		];
 

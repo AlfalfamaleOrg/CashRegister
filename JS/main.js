@@ -55,13 +55,13 @@ var Main = {
 				'events': {
 					'click': function(){
 
-						Order.addItem(item.id, item.name, item.price);
+						Order.addItem(item.id, item.name, item.price_inc);
 					}
 				}
 			});
 
 			product.getElements('.Name').set('text', item.name);
-			product.getElements('.Price').set('text', item.price);
+			product.getElements('.Price').set('text', item.price_inc);
 
 			product.inject('item_dummy', 'before').show();
 		});

@@ -12,12 +12,14 @@ class User extends AjaxEntity{
 			case 'id':
 
 				$this->_id = $value;
-				break;
+
+			break;
 
 			case 'name':
 
 				$this->_name = $value;
-				break;
+
+			break;
 		}
 	}
 
@@ -25,9 +27,17 @@ class User extends AjaxEntity{
 
 		switch($name){
 
+			case 'id':
+
+				return $this->_id;
+
+			break;
+
 			case 'name':
 
 				return $this->_name;
+
+			break;
 		}
 	}
 

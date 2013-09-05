@@ -3,6 +3,8 @@
 
 var Payment = {
 
+	items: null,
+
 	init: function(){
 
 		"use strict";
@@ -17,6 +19,8 @@ var Payment = {
 	show: function(items){
 
 		"use strict";
+
+		this.items = items;
 
 		var total = 0;
 
@@ -45,8 +49,19 @@ var Payment = {
 
 		"use strict";
 
-		this.clear();
-		Order.clear();
+		API.POST('Order', 'add', {
+			data: this.items,
+			success: function(response){
+
+				this.clear();
+				Order.clear();
+			}.bind(this),
+			failure: function(response){
+
+				alert('There seems to have been a problem: ' + response);
+			}
+		});
+
 	},
 
 	clear: function(){
