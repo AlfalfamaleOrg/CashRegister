@@ -31,6 +31,10 @@ var ItemManager = {
 
 		"use strict";
 
+		item.price_exc = ((item.price_inc / (100 + item.tax)) * 100).toFixed(2);
+		item.cost_inc = ((item.cost_exc / 100) * (100 + item.tax)).toFixed(2);
+		item.profit = (((item.price_exc - item.cost_exc) / item.cost_exc) * 100).toFixed(0);
+
 		ItemManager.items[item.id] = item;
 
 		var product = $('manage_item_dummy').clone();
@@ -44,7 +48,7 @@ var ItemManager = {
 		});
 
 		product.getElements('.Name').set('text', item.name);
-		product.getElements('.Price').set('text', item.price);
+		product.getElements('.Profit').set('text', item.frofit);
 
 		product.inject('manage_item_dummy', 'before').show();
 
@@ -63,9 +67,7 @@ var ItemManager = {
 
 		var item = ItemManager.items[ItemManager.currentId];
 
-		ItemManager.form.name.value = item.name;
-		ItemManager.form.id.value = item.id;
-		ItemManager.form.price_inc.value = item.price;
+		ItemManager.fillForm(item);
 	},
 
 	clearSelection: function(){
@@ -77,6 +79,17 @@ var ItemManager = {
 		this.form.price_inc.value = '';
 
 		Selection.deselectAll();
+	},
+
+	fillForm: function(item){
+
+		this.form.name.value = item.name;
+		this.form.id.value = item.id;
+		this.form.price_exc.value = item.price_exc;
+		this.form.price_inc.value = item.price_inc;
+		this.form.cost_exc.value = item.cost_exc;
+		this.form.cost_inc.value = item.cost_inc;
+		this.form.profit.value = item.profit + '%';
 	},
 
 	formSubmit: function(event){

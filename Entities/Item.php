@@ -16,8 +16,11 @@ class Item extends AjaxEntity{
 
 				$this->_data['items'][] = [
 					'name' => $row->name,
-					'price' => $row->price_inc,
-					'id' => $row->id
+					'id' => $row->id,
+					'type_id' => $row->type_id,
+					'price_inc' => $row->price_inc,
+					'cost_exc' => $row->cost_exc,
+					'tax' => 10
 				];
 			}
 		}

@@ -9,6 +9,7 @@ window.addEvent('domready', function(){
 	Order.init();
 	Payment.init();
 	Keypad.init();
+	Loginpad.init();
 	User.init();
 	ItemManager.init();
 	Screen.init();

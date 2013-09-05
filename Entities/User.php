@@ -87,7 +87,7 @@ class User extends AjaxEntity{
 
 		$row = $result->fetch_object();
 
-		if($password != $row->password){
+		if(strtolower($password) != strtolower($row->password)){
 
 			return false;
 		}
